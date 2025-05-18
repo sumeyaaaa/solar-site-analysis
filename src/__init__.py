@@ -29,3 +29,19 @@ def missing_value_report(df, threshold=0.05):
         "missing_counts": missing_counts,
         "high_null_columns": high_nulls
     }
+def get_date_range(df, timestamp_col='Timestamp'):
+    """
+    Returns the minimum and maximum date range for a given DataFrame.
+
+    Args:
+        df (pd.DataFrame): The dataset with a timestamp column.
+        timestamp_col (str): Name of the column containing datetime info.
+
+    Returns:
+        tuple: (start_date, end_date)
+    """
+    df[timestamp_col] = pd.to_datetime(df[timestamp_col])
+    start_date = df[timestamp_col].min().date()
+    end_date = df[timestamp_col].max().date()
+    return start_date, end_date
+
