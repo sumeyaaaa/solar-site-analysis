@@ -1,1 +1,3 @@
 echo "data/" >> .gitignore
+__pycache__/
+*.pyc
