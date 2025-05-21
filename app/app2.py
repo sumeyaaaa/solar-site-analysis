@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Update to actual plot path
-plot_dir = "notebooks/plots"
+plot_dir = "plots"
 
 # Set page title
 st.title("Cross-Country Solar Energy Comparison Dashboard")
