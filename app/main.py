@@ -3,6 +3,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import warnings
 import streamlit as st
+import sys
+import os
+sys.path.append(os.path.abspath("src"))
+from visualization import plot_monthly_avg
+
 
 # Ignore future warnings from seaborn
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -260,3 +265,20 @@ if not filtered_df.empty:
     ax_bar.yaxis.grid(True, linestyle='--', alpha=0.7)
     plt.tight_layout()
     st.pyplot(fig_bar)
+# Section: Monthly Average Trends by Country
+st.header("📆 Monthly Trends of Solar and Environmental Metrics")
+
+if not filtered_df.empty:
+    st.markdown("Monthly average trends for selected metrics across the selected countries.")
+
+    # For each selected country, show monthly trends
+    for country in selected_countries:
+        df_country = filtered_df[filtered_df['Country'] == country]
+
+        if not df_country.empty:
+            st.subheader(f"📍 {country}")
+            plot_monthly_avg(
+                df_country,
+                columns=selected_metrics,
+                country_name=country
+            )
